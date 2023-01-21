@@ -7,8 +7,10 @@
 
 import Cocoa
 import MetalKit
+
+import Foundation
 enum Colors {
-    static let wenderlichGreen = MTLClearColor(red:1.0, green: 0.4, blue: 0.21, alpha:1.0)
+    static let wenderlichGreen = MTLClearColor(red:0.4, green: 0.4, blue: 0.21, alpha:1.0)
 }
 
 class ViewController: NSViewController {
@@ -16,37 +18,18 @@ class ViewController: NSViewController {
         return view as! MTKView
     }
 
-    var device: MTLDevice!
-    var commandQueue: MTLCommandQueue!
-    
-    override func viewDidLoad() {
+    var renderer: Render?
+      
+      override func viewDidLoad() {
         super.viewDidLoad()
-        metalView.device=MTLCreateSystemDefaultDevice()
-        device=metalView.device
-        metalView.clearColor=Colors.wenderlichGreen
-        metalView.delegate=self
-        commandQueue = device.makeCommandQueue()
+        metalView.device = MTLCreateSystemDefaultDevice()
+        guard let device = metalView.device else {
+          fatalError("Device not created. Run on a physical device")
+        }
         
-        
-
-        // Do any additional setup after loading the view.
-    }
+        metalView.clearColor =  Colors.wenderlichGreen
+        renderer = Render(device: device)
+        metalView.delegate = renderer
+      }
 
 }
-extension ViewController: MTKViewDelegate{
-    func mtkView(_ view:MTKView, drawableSizeWillChange size:
-                 CGSize){ }
-    func draw(in view: MTKView){
-        guard let drawable = view.currentDrawable, let descriptor = view.currentDrawable,
-              let descriptor = view.currentRenderPassDescriptor else {
-                  return
-              }
-        let commandBuffer=commandQueue.makeCommandBuffer()
-        let commandEncoder=commandBuffer?.makeRenderCommandEncoder(descriptor:
-                                                                    descriptor)
-        commandEncoder?.endEncoding()
-        commandBuffer?.present(drawable)
-        commandBuffer?.commit()
-    }
-}
-

@@ -14,6 +14,8 @@
 		A26299EA297B3D5D00A7CEE3 /* trngl2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26299E9297B3D5D00A7CEE3 /* trngl2Tests.swift */; };
 		A26299F4297B3D5D00A7CEE3 /* trngl2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26299F3297B3D5D00A7CEE3 /* trngl2UITests.swift */; };
 		A26299F6297B3D5D00A7CEE3 /* trngl2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26299F5297B3D5D00A7CEE3 /* trngl2UITestsLaunchTests.swift */; };
+		A2629A03297BC08400A7CEE3 /* Render.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A02297BC08400A7CEE3 /* Render.swift */; };
+		A2629A05297BC7F100A7CEE3 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = A2629A04297BC7F100A7CEE3 /* Shader.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		A26299EF297B3D5D00A7CEE3 /* trngl2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = trngl2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A26299F3297B3D5D00A7CEE3 /* trngl2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trngl2UITests.swift; sourceTree = "<group>"; };
 		A26299F5297B3D5D00A7CEE3 /* trngl2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trngl2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A2629A02297BC08400A7CEE3 /* Render.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Render.swift; sourceTree = "<group>"; };
+		A2629A04297BC7F100A7CEE3 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				A26299DB297B3D5C00A7CEE3 /* Assets.xcassets */,
 				A26299DD297B3D5C00A7CEE3 /* Main.storyboard */,
 				A26299E0297B3D5C00A7CEE3 /* trngl2.entitlements */,
+				A2629A02297BC08400A7CEE3 /* Render.swift */,
+				A2629A04297BC7F100A7CEE3 /* Shader.metal */,
 			);
 			path = trngl2;
 			sourceTree = "<group>";
@@ -251,8 +257,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2629A05297BC7F100A7CEE3 /* Shader.metal in Sources */,
 				A26299DA297B3D5B00A7CEE3 /* ViewController.swift in Sources */,
 				A26299D8297B3D5B00A7CEE3 /* AppDelegate.swift in Sources */,
+				A2629A03297BC08400A7CEE3 /* Render.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
