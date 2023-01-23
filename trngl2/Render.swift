@@ -11,7 +11,9 @@ class Render: NSObject{
     let commandQueue: MTLCommandQueue
     
     var scene: Scene?
-    var pipelineState : MTLRenderPipelineState?
+    var samplerState: MTLSamplerState?
+    
+    //var pipelineState : MTLRenderPipelineState?
 //    var vertexBuffer : MTLBuffer?
 //    var indexBuffer : MTLBuffer?
     
@@ -21,43 +23,53 @@ class Render: NSObject{
         self.device=device
         commandQueue=device.makeCommandQueue()!
         super.init()
-        buildPipelineState()
+        buildSamplerState()
     }
     
-  
-    private func buildPipelineState(){
-        let library=device.makeDefaultLibrary()
-        let vertexFunction=library?.makeFunction(name: "vertex_shader")
-        let fragmentFunction = library?.makeFunction(name: "fragment_shader")
-        
-        let pipelineDescriptor=MTLRenderPipelineDescriptor()
-        pipelineDescriptor.vertexFunction=vertexFunction
-        pipelineDescriptor.fragmentFunction=fragmentFunction
-        pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
-        
-        
-        let vertexDescriptor = MTLVertexDescriptor()
-        
-        vertexDescriptor.attributes[0].format = .float3
-        vertexDescriptor.attributes[0].offset=0
-        vertexDescriptor.attributes[0].bufferIndex=0
-         
-        vertexDescriptor.attributes[1].format = .float4
-        vertexDescriptor.attributes[1].offset = MemoryLayout<float3>.stride
-        vertexDescriptor.attributes[1].bufferIndex=0
-        
-        vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
-        
-        pipelineDescriptor.vertexDescriptor = vertexDescriptor
-        
-        do {
-            pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-        }
-        catch let error as NSError{
-            print("error:\(error.localizedDescription)")
-        }
+    private func buildSamplerState() {
+      let descriptor = MTLSamplerDescriptor()
+      descriptor.minFilter = .linear
+      descriptor.magFilter = .linear
+      samplerState = device.makeSamplerState(descriptor: descriptor)
     }
 }
+
+
+
+  
+//    private func buildPipelineState(){
+//        let library=device.makeDefaultLibrary()
+//        let vertexFunction=library?.makeFunction(name: "vertex_shader")
+//        let fragmentFunction = library?.makeFunction(name: "fragment_shader")
+//        
+//        let pipelineDescriptor=MTLRenderPipelineDescriptor()
+//        pipelineDescriptor.vertexFunction=vertexFunction
+//        pipelineDescriptor.fragmentFunction=fragmentFunction
+//        pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+//        
+//        
+//        let vertexDescriptor = MTLVertexDescriptor()
+//        
+//        vertexDescriptor.attributes[0].format = .float3
+//        vertexDescriptor.attributes[0].offset=0
+//        vertexDescriptor.attributes[0].bufferIndex=0
+//         
+//        vertexDescriptor.attributes[1].format = .float4
+//        vertexDescriptor.attributes[1].offset = MemoryLayout<float3>.stride
+//        vertexDescriptor.attributes[1].bufferIndex=0
+//        
+//        vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
+//        
+//        pipelineDescriptor.vertexDescriptor = vertexDescriptor
+//        
+//        do {
+//            pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+//        }
+//        catch let error as NSError{
+//            print("error:\(error.localizedDescription)")
+//        }
+//    }
+//}
 
 extension Render: MTKViewDelegate{
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
@@ -66,17 +78,14 @@ extension Render: MTKViewDelegate{
     
     func draw(in view: MTKView) {
         guard let drawable = view.currentDrawable,
-              let pipelineState=pipelineState,
-              let descriptor=view.currentRenderPassDescriptor
-        else
-        { return }
+          let descriptor = view.currentRenderPassDescriptor else { return }
         let commandBuffer = commandQueue.makeCommandBuffer()
-        let commandEncoder=commandBuffer?.makeRenderCommandEncoder(descriptor: descriptor)
-        
-        commandEncoder?.setRenderPipelineState(pipelineState)
+        let commandEncoder =
+        commandBuffer?.makeRenderCommandEncoder(descriptor: descriptor)
+        commandEncoder?.setFragmentSamplerState(samplerState, index: 0)
         
         let deltaTime = 1 / Float(view.preferredFramesPerSecond)
-        scene?.render(commandEncoder: commandEncoder!,
+        scene?.render(commandEncoder: commandEncoder! ,
                       deltaTime: deltaTime)
         
         

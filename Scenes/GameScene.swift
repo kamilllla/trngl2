@@ -12,7 +12,9 @@ class GameScene: Scene {
   var quad: Plane
 
   override init(device: MTLDevice, size: CGSize) {
-    quad = Plane(device: device)
+    
+    quad = Plane(device: device, imageName: "texture.png")
+    
     super.init(device: device, size: size)
     add(childNode: quad)
   }

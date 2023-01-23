@@ -21,6 +21,9 @@
 		A2629A0C297BF0C300A7CEE3 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A0B297BF0C300A7CEE3 /* Node.swift */; };
 		A2629A0F297E99AD00A7CEE3 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A0E297E99AD00A7CEE3 /* Scene.swift */; };
 		A2629A11297E99D000A7CEE3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A10297E99D000A7CEE3 /* GameScene.swift */; };
+		A2629A17297EA3DC00A7CEE3 /* Texturable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A16297EA3DC00A7CEE3 /* Texturable.swift */; };
+		A2629A19297EA3EF00A7CEE3 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A18297EA3EF00A7CEE3 /* Renderable.swift */; };
+		A2629A1C297EBE5800A7CEE3 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = A2629A1B297EBE5800A7CEE3 /* texture.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		A2629A0B297BF0C300A7CEE3 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		A2629A0E297E99AD00A7CEE3 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		A2629A10297E99D000A7CEE3 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		A2629A16297EA3DC00A7CEE3 /* Texturable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texturable.swift; sourceTree = "<group>"; };
+		A2629A18297EA3EF00A7CEE3 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		A2629A1B297EBE5800A7CEE3 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,7 @@
 		A26299CB297B3D5B00A7CEE3 = {
 			isa = PBXGroup;
 			children = (
+				A2629A1A297EB92B00A7CEE3 /* Images */,
 				A2629A0D297E999700A7CEE3 /* Scenes */,
 				A2629A08297BF04400A7CEE3 /* Nodes */,
 				A26299D6297B3D5B00A7CEE3 /* trngl2 */,
@@ -145,6 +152,8 @@
 			children = (
 				A2629A09297BF08500A7CEE3 /* Plane.swift */,
 				A2629A0B297BF0C300A7CEE3 /* Node.swift */,
+				A2629A16297EA3DC00A7CEE3 /* Texturable.swift */,
+				A2629A18297EA3EF00A7CEE3 /* Renderable.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -156,6 +165,14 @@
 				A2629A10297E99D000A7CEE3 /* GameScene.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A2629A1A297EB92B00A7CEE3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A2629A1B297EBE5800A7CEE3 /* texture.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2629A1C297EBE5800A7CEE3 /* texture.png in Resources */,
 				A26299DC297B3D5C00A7CEE3 /* Assets.xcassets in Resources */,
 				A26299DF297B3D5C00A7CEE3 /* Main.storyboard in Resources */,
 			);
@@ -293,10 +311,12 @@
 				A26299D8297B3D5B00A7CEE3 /* AppDelegate.swift in Sources */,
 				A2629A11297E99D000A7CEE3 /* GameScene.swift in Sources */,
 				A2629A07297BEFB700A7CEE3 /* Types.swift in Sources */,
+				A2629A19297EA3EF00A7CEE3 /* Renderable.swift in Sources */,
 				A2629A0F297E99AD00A7CEE3 /* Scene.swift in Sources */,
 				A2629A0A297BF08500A7CEE3 /* Plane.swift in Sources */,
 				A2629A03297BC08400A7CEE3 /* Render.swift in Sources */,
 				A2629A0C297BF0C300A7CEE3 /* Node.swift in Sources */,
+				A2629A17297EA3DC00A7CEE3 /* Texturable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
