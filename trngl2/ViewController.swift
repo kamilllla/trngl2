@@ -29,6 +29,7 @@ class ViewController: NSViewController {
         
         metalView.clearColor =  Colors.wenderlichGreen
         renderer = Render(device: device)
+        renderer?.scene = GameScene(device: device, size: view.bounds.size)
         metalView.delegate = renderer
       }
 

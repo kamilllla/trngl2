@@ -16,6 +16,11 @@
 		A26299F6297B3D5D00A7CEE3 /* trngl2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26299F5297B3D5D00A7CEE3 /* trngl2UITestsLaunchTests.swift */; };
 		A2629A03297BC08400A7CEE3 /* Render.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A02297BC08400A7CEE3 /* Render.swift */; };
 		A2629A05297BC7F100A7CEE3 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = A2629A04297BC7F100A7CEE3 /* Shader.metal */; };
+		A2629A07297BEFB700A7CEE3 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A06297BEFB700A7CEE3 /* Types.swift */; };
+		A2629A0A297BF08500A7CEE3 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A09297BF08500A7CEE3 /* Plane.swift */; };
+		A2629A0C297BF0C300A7CEE3 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A0B297BF0C300A7CEE3 /* Node.swift */; };
+		A2629A0F297E99AD00A7CEE3 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A0E297E99AD00A7CEE3 /* Scene.swift */; };
+		A2629A11297E99D000A7CEE3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2629A10297E99D000A7CEE3 /* GameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		A26299F5297B3D5D00A7CEE3 /* trngl2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trngl2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A2629A02297BC08400A7CEE3 /* Render.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Render.swift; sourceTree = "<group>"; };
 		A2629A04297BC7F100A7CEE3 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
+		A2629A06297BEFB700A7CEE3 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		A2629A09297BF08500A7CEE3 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		A2629A0B297BF0C300A7CEE3 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		A2629A0E297E99AD00A7CEE3 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		A2629A10297E99D000A7CEE3 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,8 @@
 		A26299CB297B3D5B00A7CEE3 = {
 			isa = PBXGroup;
 			children = (
+				A2629A0D297E999700A7CEE3 /* Scenes */,
+				A2629A08297BF04400A7CEE3 /* Nodes */,
 				A26299D6297B3D5B00A7CEE3 /* trngl2 */,
 				A26299E8297B3D5D00A7CEE3 /* trngl2Tests */,
 				A26299F2297B3D5D00A7CEE3 /* trngl2UITests */,
@@ -106,6 +118,7 @@
 				A26299E0297B3D5C00A7CEE3 /* trngl2.entitlements */,
 				A2629A02297BC08400A7CEE3 /* Render.swift */,
 				A2629A04297BC7F100A7CEE3 /* Shader.metal */,
+				A2629A06297BEFB700A7CEE3 /* Types.swift */,
 			);
 			path = trngl2;
 			sourceTree = "<group>";
@@ -125,6 +138,24 @@
 				A26299F5297B3D5D00A7CEE3 /* trngl2UITestsLaunchTests.swift */,
 			);
 			path = trngl2UITests;
+			sourceTree = "<group>";
+		};
+		A2629A08297BF04400A7CEE3 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				A2629A09297BF08500A7CEE3 /* Plane.swift */,
+				A2629A0B297BF0C300A7CEE3 /* Node.swift */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		A2629A0D297E999700A7CEE3 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A2629A0E297E99AD00A7CEE3 /* Scene.swift */,
+				A2629A10297E99D000A7CEE3 /* GameScene.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +291,12 @@
 				A2629A05297BC7F100A7CEE3 /* Shader.metal in Sources */,
 				A26299DA297B3D5B00A7CEE3 /* ViewController.swift in Sources */,
 				A26299D8297B3D5B00A7CEE3 /* AppDelegate.swift in Sources */,
+				A2629A11297E99D000A7CEE3 /* GameScene.swift in Sources */,
+				A2629A07297BEFB700A7CEE3 /* Types.swift in Sources */,
+				A2629A0F297E99AD00A7CEE3 /* Scene.swift in Sources */,
+				A2629A0A297BF08500A7CEE3 /* Plane.swift in Sources */,
 				A2629A03297BC08400A7CEE3 /* Render.swift in Sources */,
+				A2629A0C297BF0C300A7CEE3 /* Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
