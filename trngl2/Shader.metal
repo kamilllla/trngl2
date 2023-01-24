@@ -25,10 +25,14 @@ struct VertexOut {
 
 vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
                                constant ModelConstants &modelConstants [[ buffer(1) ]])  {
+  
   VertexOut vertexOut;
+  
   vertexOut.position = modelConstants.modelViewMatrix * vertexIn.position;
+  
   vertexOut.color = vertexIn.color;
   vertexOut.textureCoordinates = vertexIn.textureCoordinates;
+
   return vertexOut;
 }
 
@@ -43,7 +47,6 @@ fragment half4 textured_fragment(VertexOut vertexIn [[ stage_in ]],
   if (color.a == 0.0)
     discard_fragment();
   return half4(color.r, color.g, color.b, 1);
-  
 }
 
 fragment half4 textured_mask_fragment(VertexOut vertexIn [[ stage_in ]],
@@ -56,6 +59,5 @@ fragment half4 textured_mask_fragment(VertexOut vertexIn [[ stage_in ]],
   if (maskOpacity < 0.5)
     discard_fragment();
   return half4(color.r, color.g, color.b, 1);
-  
 }
 

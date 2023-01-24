@@ -8,7 +8,7 @@
 import MetalKit
 
 enum Colors {
-  static let wenderlichGreen = MTLClearColor(red: 0.0,
+  static let wenderlichGreen = MTLClearColor(red: 0.4,
                                              green: 0.4,
                                              blue: 0.21,
                                              alpha: 1.0)
@@ -30,6 +30,7 @@ class ViewController: NSViewController {
     }
     
     metalView.clearColor =  Colors.wenderlichGreen
+      metalView.depthStencilPixelFormat = .depth32Float
     renderer = Renderer(device: device)
     renderer?.scene = GameScene(device: device, size: view.bounds.size)
     metalView.delegate = renderer
