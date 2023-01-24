@@ -4,12 +4,11 @@
 //
 //  Created by Камилла Балаева on 21.01.2023.
 //
-
 #include <metal_stdlib>
 using namespace metal;
 
-struct Constants {
-  float animateBy;
+struct ModelConstants {
+  float4x4 modelViewMatrix;
 };
 
 struct VertexIn {
@@ -24,13 +23,12 @@ struct VertexOut {
   float2 textureCoordinates;
 };
 
-vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]]) {
-  
+vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
+                               constant ModelConstants &modelConstants [[ buffer(1) ]])  {
   VertexOut vertexOut;
-  vertexOut.position = vertexIn.position;
+  vertexOut.position = modelConstants.modelViewMatrix * vertexIn.position;
   vertexOut.color = vertexIn.color;
   vertexOut.textureCoordinates = vertexIn.textureCoordinates;
-
   return vertexOut;
 }
 
@@ -42,6 +40,22 @@ fragment half4 textured_fragment(VertexOut vertexIn [[ stage_in ]],
                                  sampler sampler2d [[ sampler(0) ]],
                                  texture2d<float> texture [[ texture(0) ]] ) {
   float4 color = texture.sample(sampler2d, vertexIn.textureCoordinates);
+  if (color.a == 0.0)
+    discard_fragment();
   return half4(color.r, color.g, color.b, 1);
   
 }
+
+fragment half4 textured_mask_fragment(VertexOut vertexIn [[ stage_in ]],
+                                      texture2d<float> texture [[ texture(0) ]],
+                                      texture2d<float> maskTexture [[ texture(1) ]],
+                                      sampler sampler2d [[ sampler(0) ]] ) {
+  float4 color = texture.sample(sampler2d, vertexIn.textureCoordinates);
+  float4 maskColor = maskTexture.sample(sampler2d, vertexIn.textureCoordinates);
+  float maskOpacity = maskColor.a;
+  if (maskOpacity < 0.5)
+    discard_fragment();
+  return half4(color.r, color.g, color.b, 1);
+  
+}
+

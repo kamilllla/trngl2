@@ -1,41 +1,20 @@
-//
-//  Plane.swift
-//  trngl2
-//
-//  Created by Камилла Балаева on 21.01.2023.
-//
-
 import MetalKit
 
-class Plane: Node {
-
+class Primitive: Node {
+  
   var vertices: [Vertex] = [
-    Vertex(position: float3( -1, 1, 0),// V0
-      color: float4(1, 0, 0, 1),
-      texture: float2(0, 1)),
-    Vertex(position: float3( -1, -1, 0),// V1
-      color: float4(0, 1, 0, 1),
-      texture: float2(0, 0)),
-    Vertex(position: float3( 1, -1, 0), // V2
-      color: float4(0, 0, 1, 1),
-      texture: float2(1, 0)),
-    Vertex(position: float3( 1, 1, 0), // V3
-      color: float4(1, 0, 1, 1),
-      texture: float2(1, 1))
   ]
   
   var indices: [UInt16] = [
-    0, 1, 2,
-    2, 3, 0
   ]
   
   var vertexBuffer: MTLBuffer?
   var indexBuffer: MTLBuffer?
   
   var time: Float = 0
-
+  
   var modelConstants = ModelConstants()
- 
+  
   // Renderable
   var pipelineState: MTLRenderPipelineState!
   var fragmentFunctionName: String = "fragment_shader"
@@ -68,23 +47,25 @@ class Plane: Node {
   
   init(device: MTLDevice) {
     super.init()
+    buildVertices()
     buildBuffers(device: device)
     pipelineState = buildPipelineState(device: device)
   }
-
+  
   init(device: MTLDevice, imageName: String) {
     super.init()
     if let texture = setTexture(device: device, imageName: imageName) {
       self.texture = texture
       fragmentFunctionName = "textured_fragment"
     }
-    
+    buildVertices()
     buildBuffers(device: device)
     pipelineState = buildPipelineState(device: device)
   }
-
+  
   init(device: MTLDevice, imageName: String, maskImageName: String) {
     super.init()
+    buildVertices()
     buildBuffers(device: device)
     if let texture = setTexture(device: device, imageName: imageName) {
       self.texture = texture
@@ -97,7 +78,9 @@ class Plane: Node {
     }
     pipelineState = buildPipelineState(device: device)
   }
-
+  
+  func buildVertices() {}
+  
   private func buildBuffers(device: MTLDevice) {
     vertexBuffer = device.makeBuffer(bytes: vertices,
                                      length: vertices.count *
@@ -107,20 +90,11 @@ class Plane: Node {
                                     length: indices.count * MemoryLayout<UInt16>.size,
                                     options: [])
   }
-  
-  override func render(commandEncoder: MTLRenderCommandEncoder,
-                       deltaTime: Float) {
-    super.render(commandEncoder: commandEncoder,
-                 deltaTime: deltaTime)
+}
+
+extension Primitive: Renderable {
+  func doRender(commandEncoder: MTLRenderCommandEncoder, modelViewMatrix: matrix_float4x4) {
     guard let indexBuffer = indexBuffer else { return }
-    
-    time += deltaTime
-    let animateBy = abs(sin(time)/2 + 0.5)
-    let rotationMatrix = matrix_float4x4(rotationAngle: animateBy,
-                                         x: 0, y: 0, z: 1)
-    let viewMatrix = matrix_float4x4(translationX: 0, y: 0, z: -4)
-    let modelViewMatrix = matrix_multiply(rotationMatrix, viewMatrix)
-    modelConstants.modelViewMatrix = modelViewMatrix
     let aspect = Float(750.0/1334.0)
     let projectionMatrix = matrix_float4x4(projectionFov: radians(fromDegrees: 65),
                                            aspect: aspect,
@@ -134,6 +108,8 @@ class Plane: Node {
                                     index: 1)
       commandEncoder.setFragmentTexture(texture, index: 0)
       commandEncoder.setFragmentTexture(maskTexture, index: 1)
+    commandEncoder.setFrontFacing(.counterClockwise)
+    commandEncoder.setCullMode(.back)
     commandEncoder.drawIndexedPrimitives(type: .triangle,
                                          indexCount: indices.count,
                                          indexType: .uint16,
@@ -142,9 +118,6 @@ class Plane: Node {
   }
 }
 
-extension Plane: Renderable {
-}
-
-extension Plane: Texturable {}
+extension Primitive: Texturable {}
 
 
