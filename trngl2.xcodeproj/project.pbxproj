@@ -27,6 +27,12 @@
 		A2CED1492980035800799EC2 /* MatrixMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CED1482980035800799EC2 /* MatrixMath.swift */; };
 		A2CED14B29800F2500799EC2 /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CED14A29800F2500799EC2 /* Primitive.swift */; };
 		A2CED14D29800F2C00799EC2 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CED14C29800F2C00799EC2 /* Cube.swift */; };
+		A2CED18E298104A900799EC2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CED18D298104A900799EC2 /* Model.swift */; };
+		A2CED190298106F800799EC2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CED18F298106F800799EC2 /* Extensions.swift */; };
+		A2CED19429810E3000799EC2 /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A2CED19229810E3000799EC2 /* camera.jpg */; };
+		A2CED19529810E3000799EC2 /* camera.obj in Resources */ = {isa = PBXBuildFile; fileRef = A2CED19329810E3000799EC2 /* camera.obj */; };
+		A2CED1972981196300799EC2 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CED1962981196300799EC2 /* Camera.swift */; };
+		A2CED19B29811B2E00799EC2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CED19A29811B2E00799EC2 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +77,12 @@
 		A2CED1482980035800799EC2 /* MatrixMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixMath.swift; sourceTree = "<group>"; };
 		A2CED14A29800F2500799EC2 /* Primitive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitive.swift; sourceTree = "<group>"; };
 		A2CED14C29800F2C00799EC2 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+		A2CED18D298104A900799EC2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		A2CED18F298106F800799EC2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A2CED19229810E3000799EC2 /* camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = camera.jpg; sourceTree = "<group>"; };
+		A2CED19329810E3000799EC2 /* camera.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = camera.obj; sourceTree = "<group>"; };
+		A2CED1962981196300799EC2 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		A2CED19A29811B2E00799EC2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +113,7 @@
 		A26299CB297B3D5B00A7CEE3 = {
 			isa = PBXGroup;
 			children = (
+				A2CED19129810E0E00799EC2 /* Models */,
 				A2629A1A297EB92B00A7CEE3 /* Images */,
 				A2629A0D297E999700A7CEE3 /* Scenes */,
 				A2629A08297BF04400A7CEE3 /* Nodes */,
@@ -124,6 +137,8 @@
 		A26299D6297B3D5B00A7CEE3 /* trngl2 */ = {
 			isa = PBXGroup;
 			children = (
+				A2CED19A29811B2E00799EC2 /* Constants.swift */,
+				A2CED1962981196300799EC2 /* Camera.swift */,
 				A2CED1482980035800799EC2 /* MatrixMath.swift */,
 				A26299D7297B3D5B00A7CEE3 /* AppDelegate.swift */,
 				A26299D9297B3D5B00A7CEE3 /* ViewController.swift */,
@@ -133,6 +148,8 @@
 				A2629A02297BC08400A7CEE3 /* Render.swift */,
 				A2629A04297BC7F100A7CEE3 /* Shader.metal */,
 				A2629A06297BEFB700A7CEE3 /* Types.swift */,
+				A2CED18D298104A900799EC2 /* Model.swift */,
+				A2CED18F298106F800799EC2 /* Extensions.swift */,
 			);
 			path = trngl2;
 			sourceTree = "<group>";
@@ -182,6 +199,15 @@
 				A2629A1B297EBE5800A7CEE3 /* texture.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		A2CED19129810E0E00799EC2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A2CED19229810E3000799EC2 /* camera.jpg */,
+				A2CED19329810E3000799EC2 /* camera.obj */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +316,9 @@
 			files = (
 				A2629A1C297EBE5800A7CEE3 /* texture.png in Resources */,
 				A26299DC297B3D5C00A7CEE3 /* Assets.xcassets in Resources */,
+				A2CED19529810E3000799EC2 /* camera.obj in Resources */,
 				A26299DF297B3D5C00A7CEE3 /* Main.storyboard in Resources */,
+				A2CED19429810E3000799EC2 /* camera.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +343,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2CED18E298104A900799EC2 /* Model.swift in Sources */,
+				A2CED19B29811B2E00799EC2 /* Constants.swift in Sources */,
 				A2629A05297BC7F100A7CEE3 /* Shader.metal in Sources */,
+				A2CED1972981196300799EC2 /* Camera.swift in Sources */,
 				A26299DA297B3D5B00A7CEE3 /* ViewController.swift in Sources */,
 				A26299D8297B3D5B00A7CEE3 /* AppDelegate.swift in Sources */,
 				A2629A11297E99D000A7CEE3 /* GameScene.swift in Sources */,
@@ -325,6 +356,7 @@
 				A2629A0F297E99AD00A7CEE3 /* Scene.swift in Sources */,
 				A2629A0A297BF08500A7CEE3 /* Plane.swift in Sources */,
 				A2CED14B29800F2500799EC2 /* Primitive.swift in Sources */,
+				A2CED190298106F800799EC2 /* Extensions.swift in Sources */,
 				A2629A03297BC08400A7CEE3 /* Render.swift in Sources */,
 				A2629A0C297BF0C300A7CEE3 /* Node.swift in Sources */,
 				A2CED14D29800F2C00799EC2 /* Cube.swift in Sources */,

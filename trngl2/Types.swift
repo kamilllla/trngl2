@@ -12,7 +12,3 @@ struct Vertex {
   var color: float4
   var texture: float2
 }
-
-struct ModelConstants {
-  var modelViewMatrix = matrix_identity_float4x4
-}
